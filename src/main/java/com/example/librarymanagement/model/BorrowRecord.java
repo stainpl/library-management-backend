@@ -103,4 +103,9 @@ public class BorrowRecord {
                ", returnedAt=" + returnedAt +
                '}';
     }
+
+	public void setId(long l) {
+		// TODO Auto-generated method stub
+		
+	}
 }

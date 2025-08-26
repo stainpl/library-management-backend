@@ -57,4 +57,9 @@ public class User {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+	public void setId(long l) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -1,5 +1,6 @@
-package com.example.librarymanagement.controller;
+package com.example.librarymanagement.service.controller;
 
+import com.example.librarymanagement.controller.BookController;
 import com.example.librarymanagement.model.Book;
 import com.example.librarymanagement.service.BookService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,14 +21,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-/**
- * Controller slice test for BookController.
- * Assumes BookController exposes:
- *  - POST /api/books      -> returns Book (200)
- *  - GET  /api/books      -> returns List<Book>
- *  - GET  /api/books/{id} -> returns 200 Book or 404
- *  - DELETE /api/books/{id} -> returns 200 (void)
- */
+
 @WebMvcTest(BookController.class)
 class BookControllerTest {
 

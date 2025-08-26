@@ -1,5 +1,6 @@
-package com.example.librarymanagement.controller;
+package com.example.librarymanagement.service.controller;
 
+import com.example.librarymanagement.controller.BorrowController;
 import com.example.librarymanagement.model.Book;
 import com.example.librarymanagement.model.BorrowRecord;
 import com.example.librarymanagement.model.User;
@@ -20,13 +21,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-/**
- * Controller slice test for BorrowController.
- * Expects endpoints:
- *  - POST /api/borrow?userId={u}&bookId={b}
- *  - POST /api/borrow/return?bookId={b}
- *  - GET  /api/borrow/active
- */
+
 @WebMvcTest(BorrowController.class)
 class BorrowControllerTest {
 

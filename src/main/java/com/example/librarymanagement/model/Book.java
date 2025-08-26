@@ -26,15 +26,18 @@ public class Book {
         this.available = true;
     }
 
-
     public Long getId() {
         return id;
+    }
+
+    // ✅ Add this so your tests compile
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
         return title;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
@@ -42,7 +45,6 @@ public class Book {
     public String getAuthor() {
         return author;
     }
-
     public void setAuthor(String author) {
         this.author = author;
     }
@@ -50,17 +52,14 @@ public class Book {
     public boolean isAvailable() {
         return available;
     }
-
     public void setAvailable(boolean available) {
         this.available = available;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (!(o instanceof Book)) return false;
         Book book = (Book) o;
         return Objects.equals(id, book.id);
     }
@@ -69,7 +68,6 @@ public class Book {
     public int hashCode() {
         return Objects.hash(id);
     }
-
 
     @Override
     public String toString() {
