@@ -4,7 +4,6 @@ import com.example.librarymanagement.model.Book;
 import com.example.librarymanagement.model.BorrowRecord;
 import com.example.librarymanagement.model.User;
 import com.example.librarymanagement.service.BorrowService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

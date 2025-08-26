@@ -19,7 +19,6 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-
 @WebMvcTest(BookController.class)
 class BookControllerTest {
 
@@ -90,11 +89,11 @@ class BookControllerTest {
     }
 
     @Test
-    void deleteBook_shouldCallServiceAndReturnOk() throws Exception {
+    void deleteBook_shouldCallServiceAndReturnNoContent() throws Exception {
         doNothing().when(bookService).delete(5L);
 
         mvc.perform(delete("/api/books/5"))
-            .andExpect(status().isOk()); 
+            .andExpect(status().isNoContent()); 
 
         verify(bookService).delete(5L);
     }
