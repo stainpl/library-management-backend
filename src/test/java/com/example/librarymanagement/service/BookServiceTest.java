@@ -1,6 +1,7 @@
 package com.example.librarymanagement.service;
 
 import com.example.librarymanagement.model.Book;
+import org.mockito.junit.jupiter.MockitoExtension;
 import com.example.librarymanagement.repository.BookRepository;
 import com.example.librarymanagement.repository.BorrowRecordRepository;
 import org.junit.jupiter.api.Test;

@@ -21,10 +21,12 @@ public class User {
         this.email = email;
     }
 
-    // Getters & setters
-
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) { 
+        this.id = id;
     }
 
     public String getName() {
@@ -43,8 +45,6 @@ public class User {
         this.email = email;
     }
 
-    // equals & hashCode based on id
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -57,9 +57,4 @@ public class User {
     public int hashCode() {
         return Objects.hash(id);
     }
-
-	public void setId(long l) {
-		// TODO Auto-generated method stub
-		
-	}
 }

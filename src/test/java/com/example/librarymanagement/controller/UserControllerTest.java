@@ -1,4 +1,4 @@
-package com.example.librarymanagement.service.controller;
+package com.example.librarymanagement.controller;
 
 import com.example.librarymanagement.model.User;
 import com.example.librarymanagement.service.UserService;
@@ -9,9 +9,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
-public class UserController {
+public class UserControllerTest {
   private final UserService svc;
-  public UserController(UserService svc) { this.svc = svc; }
+  public UserControllerTest(UserService svc) { this.svc = svc; }
 
   @PostMapping
   public User create(@RequestBody User u) { return svc.create(u); }

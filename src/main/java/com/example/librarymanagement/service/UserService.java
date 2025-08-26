@@ -38,7 +38,6 @@ public class UserService {
         if (!userRepo.existsById(id)) {
             throw new NoSuchElementException("User with id " + id + " not found");
         }
-        // Delete borrow records first, then the user
         borrowRepo.deleteByUserId(id);
         userRepo.deleteById(id);
     }

@@ -28,10 +28,11 @@ public class BorrowRecord {
     /** When the book was borrowed */
     @Column(nullable = false)
     private LocalDateTime borrowedAt;
+
     private LocalDateTime returnedAt;
 
     public BorrowRecord() {
-        // JPA
+        // JPA default constructor
     }
 
     public BorrowRecord(User user, Book book) {
@@ -40,15 +41,17 @@ public class BorrowRecord {
         this.borrowedAt = LocalDateTime.now();
     }
 
-
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public User getUser() {
         return user;
     }
-
     public void setUser(User user) {
         this.user = user;
     }
@@ -56,7 +59,6 @@ public class BorrowRecord {
     public Book getBook() {
         return book;
     }
-
     public void setBook(Book book) {
         this.book = book;
     }
@@ -64,7 +66,6 @@ public class BorrowRecord {
     public LocalDateTime getBorrowedAt() {
         return borrowedAt;
     }
-
     public void setBorrowedAt(LocalDateTime borrowedAt) {
         this.borrowedAt = borrowedAt;
     }
@@ -72,17 +73,14 @@ public class BorrowRecord {
     public LocalDateTime getReturnedAt() {
         return returnedAt;
     }
-
     public void setReturnedAt(LocalDateTime returnedAt) {
         this.returnedAt = returnedAt;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (!(o instanceof BorrowRecord)) return false;
         BorrowRecord that = (BorrowRecord) o;
         return Objects.equals(id, that.id);
     }
@@ -91,7 +89,6 @@ public class BorrowRecord {
     public int hashCode() {
         return Objects.hash(id);
     }
-
 
     @Override
     public String toString() {
@@ -103,9 +100,4 @@ public class BorrowRecord {
                ", returnedAt=" + returnedAt +
                '}';
     }
-
-	public void setId(long l) {
-		// TODO Auto-generated method stub
-		
-	}
 }

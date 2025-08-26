@@ -30,8 +30,7 @@ public class Book {
         return id;
     }
 
-    // ✅ Add this so your tests compile
-    public void setId(Long id) {
+    public void setId(Long id) {   
         this.id = id;
     }
 

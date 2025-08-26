@@ -11,11 +11,11 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
-public class UserService {
+public class UserServiceTest {
     private final UserRepository userRepo;
     private final BorrowRecordRepository borrowRepo;
 
-    public UserService(UserRepository userRepo, BorrowRecordRepository borrowRepo) {
+    public UserServiceTest(UserRepository userRepo, BorrowRecordRepository borrowRepo) {
         this.userRepo = userRepo;
         this.borrowRepo = borrowRepo;
     }
@@ -28,7 +28,6 @@ public class UserService {
         return userRepo.findAll();
     }
 
-    // ✅ add this so UserController compiles
     public Optional<User> findById(Long id) {
         return userRepo.findById(id);
     }

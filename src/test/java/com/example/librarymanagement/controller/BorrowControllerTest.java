@@ -1,17 +1,14 @@
-package com.example.librarymanagement.service.controller;
+package com.example.librarymanagement.controller;
 
-import com.example.librarymanagement.controller.BorrowController;
 import com.example.librarymanagement.model.Book;
 import com.example.librarymanagement.model.BorrowRecord;
 import com.example.librarymanagement.model.User;
 import com.example.librarymanagement.service.BorrowService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDateTime;
@@ -30,9 +27,6 @@ class BorrowControllerTest {
 
     @MockBean
     private BorrowService borrowService;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @Test
     void borrow_shouldReturnBorrowRecord() throws Exception {

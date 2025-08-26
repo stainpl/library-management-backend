@@ -1,11 +1,9 @@
-package com.example.librarymanagement.service.controller;
+package com.example.librarymanagement.controller;
 
-import com.example.librarymanagement.controller.BookController;
 import com.example.librarymanagement.model.Book;
 import com.example.librarymanagement.service.BookService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -38,10 +36,7 @@ class BookControllerTest {
     void addBook_shouldReturnSavedBook() throws Exception {
         Book toSave = new Book("Clean Code", "Robert C. Martin");
         Book saved = new Book("Clean Code", "Robert C. Martin");
-        // simulate generated id
-        // depending on your Book implementation you may need a setter for id
-        // using reflection lightly here isn't ideal — better if your model has setId
-        saved.setTitle("Clean Code"); // ensure values present
+        saved.setTitle("Clean Code");
         when(bookService.add(any(Book.class))).thenReturn(saved);
 
         mvc.perform(post("/api/books")
@@ -96,11 +91,10 @@ class BookControllerTest {
 
     @Test
     void deleteBook_shouldCallServiceAndReturnOk() throws Exception {
-        // No return expected; just ensure service method is called.
         doNothing().when(bookService).delete(5L);
 
         mvc.perform(delete("/api/books/5"))
-            .andExpect(status().isOk()); // adjust to isNoContent() if your controller returns 204
+            .andExpect(status().isOk()); 
 
         verify(bookService).delete(5L);
     }
