@@ -39,7 +39,6 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(body, new HttpHeaders(), body.getStatus());
     }
 
-    // ✅ You can move this to its own file if preferred
     public static class ApiError {
         private final HttpStatus status;
         private final String message;

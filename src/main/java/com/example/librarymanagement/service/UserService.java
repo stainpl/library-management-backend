@@ -1,41 +1,62 @@
 package com.example.librarymanagement.service;
 
-import com.example.librarymanagement.model.User;                     // for User
-import com.example.librarymanagement.repository.UserRepository;     // for userRepo
-import com.example.librarymanagement.repository.BorrowRecordRepository; // for borrowRepo
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import com.example.librarymanagement.model.User;
+import com.example.librarymanagement.repository.UserRepository;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.*;
 
-import java.util.List;                     // for List
-import java.util.NoSuchElementException;   // for throwing when missing
+import java.util.*;
 
-@Service
-public class UserService {
-    private final UserRepository userRepo;
-    private final BorrowRecordRepository borrowRepo;
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
-    public UserService(UserRepository userRepo,
-                       BorrowRecordRepository borrowRepo) {
-        this.userRepo = userRepo;
-        this.borrowRepo = borrowRepo;
+@ExtendWith(MockitoExtension.class)
+class UserServiceTest {
+
+    @Mock UserRepository userRepo;
+    @Mock BorrowRecordRepository borrowRepo;
+    @InjectMocks UserService svc;
+
+    @Test
+    void createShouldSaveAndReturnUser() {
+        User u = new User("Alice","a@x.com");
+        when(userRepo.save(u)).thenReturn(u);
+
+        User result = svc.create(u);
+
+        assertThat(result).isSameAs(u);
+        verify(userRepo).save(u);
     }
 
-    public User create(User u) {
-        return userRepo.save(u);
+    @Test
+    void findAllShouldDelegateToRepo() {
+        List<User> list = List.of(new User("A","a@a"), new User("B","b@b"));
+        when(userRepo.findAll()).thenReturn(list);
+
+        List<User> out = svc.findAll();
+
+        assertThat(out).hasSize(2).containsExactlyElementsOf(list);
     }
 
-    public List<User> findAll() {
-        return userRepo.findAll();
+    @Test
+    void deleteShouldFirstDeleteBorrowRecordsThenUser() {
+        long id = 123L;
+        when(userRepo.existsById(id)).thenReturn(true);
+
+        svc.delete(id);
+
+        InOrder ord = inOrder(borrowRepo, userRepo);
+        ord.verify(borrowRepo).deleteByUserId(id);
+        ord.verify(userRepo).deleteById(id);
     }
 
-    @Transactional
-    public void delete(Long id) {
-        if (!userRepo.existsById(id)) {
-            throw new NoSuchElementException("User with id " + id + " not found");
-        }
-        // 1) remove dependent borrow records
-        borrowRepo.deleteByUserId(id);
-        // 2) delete the user
-        userRepo.deleteById(id);
+    @Test
+    void deleteNonexistentShouldThrow() {
+        when(userRepo.existsById(5L)).thenReturn(false);
+
+        assertThatThrownBy(() -> svc.delete(5L))
+          .isInstanceOf(NoSuchElementException.class)
+          .hasMessageContaining("not found");
     }
 }

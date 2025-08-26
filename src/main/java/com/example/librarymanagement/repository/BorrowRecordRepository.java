@@ -13,7 +13,6 @@ public interface BorrowRecordRepository extends JpaRepository<BorrowRecord, Long
     
     Optional<BorrowRecord> findByBookIdAndReturnedAtIsNull(Long bookId);
 
-    // ✅ Add this:
     List<BorrowRecord> findByReturnedAtIsNull();
     
     void deleteByBookId(Long bookId);

@@ -14,7 +14,6 @@ public class BorrowRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /** The user who borrowed */
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -41,7 +40,6 @@ public class BorrowRecord {
         this.borrowedAt = LocalDateTime.now();
     }
 
-    // ----- Getters and Setters -----
 
     public Long getId() {
         return id;
@@ -79,7 +77,6 @@ public class BorrowRecord {
         this.returnedAt = returnedAt;
     }
 
-    // ----- equals & hashCode -----
 
     @Override
     public boolean equals(Object o) {
@@ -95,7 +92,6 @@ public class BorrowRecord {
         return Objects.hash(id);
     }
 
-    // ----- toString -----
 
     @Override
     public String toString() {

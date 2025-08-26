@@ -38,9 +38,7 @@ public class BookService {
         if (!bookRepo.existsById(id)) {
             throw new NoSuchElementException("Book with id " + id + " not found");
         }
-        // 1) remove all borrow records referencing this book
         borrowRepo.deleteByBookId(id);
-        // 2) delete the book itself
         bookRepo.deleteById(id);
     }
 }

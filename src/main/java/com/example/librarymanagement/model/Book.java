@@ -14,12 +14,10 @@ public class Book {
     private String title;
     private String author;
 
-    /** true = available, false = currently borrowed */
     @Column(nullable = false)
     private boolean available = true;
 
     public Book() {
-        // JPA
     }
 
     public Book(String title, String author) {
@@ -28,7 +26,6 @@ public class Book {
         this.available = true;
     }
 
-    // ----- Getters and Setters -----
 
     public Long getId() {
         return id;
@@ -58,7 +55,6 @@ public class Book {
         this.available = available;
     }
 
-    // ----- equals & hashCode -----
 
     @Override
     public boolean equals(Object o) {
@@ -74,7 +70,6 @@ public class Book {
         return Objects.hash(id);
     }
 
-    // ----- toString -----
 
     @Override
     public String toString() {
